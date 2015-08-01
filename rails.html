@@ -450,6 +450,117 @@ end
 ---
 template: inverse
 
+# Rotas
+
+---
+
+```
+resources :products do
+  resources :comments, :sales
+  resource :seller
+end
+
+# GET: /posts
+# GET: /posts/1/edit
+# POST: /posts/5/comments
+# POST: /posts/4/comments/create
+# DELETE: /posts/10/comments/5
+# GET: /posts/7/seller
+```
+
+--
+
+```
+get 'products/:id' => 'catalog#view'
+```
+--
+
+```
+root to: 'home#index'
+```
+
+---
+template: inverse
+
+# Controllers
+
+---
+
+```
+class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
+  # GET /posts
+  # GET /posts.json
+  def index
+    @posts = Post.all
+  end
+{{content}}
+```
+
+--
+
+  # GET /posts/new
+  def new
+    @post = Post.new
+  end
+  {{content}}
+
+--
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_post
+      @post = Post.find(params[:id])
+    end
+  {{content}}
+
+--
+
+    # Never trust parameters from the scary internet.
+    def post_params
+      params.require(:post).permit(:title, :content)
+    end
+
+---
+template: inverse
+
+# Views
+
+---
+class: center, middle
+
+## .erb
+
+```
+<div>
+  <% if @post.active? %>
+    <h1>
+      <%= @post.title %>
+    </h1>
+    <p>
+      <%= @post.content %>
+    </p>
+  <% end %>
+</div>
+```
+
+---
+class: center, middle
+
+## Partials
+
+### _post.erb
+
+```
+<% if @post.active? %>
+  <%= render @post %>
+<% end %>
+```
+
+---
+template: inverse
+
 # Lets do it!
 
 ---
