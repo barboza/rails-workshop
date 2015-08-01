@@ -110,12 +110,12 @@ layout: false
 ## Agenda
 * Intro
 * Common Data Types
-* Declaring variables/constants
+* Defining variables/constants
 * Collections
 * Flow control
 * Blocks and Procs
-* Declaring Methods
-* Declaring Classes
+* Defining Methods
+* Defining Classes
 * Type of variable
 * Declaring Modules
 ---
@@ -699,13 +699,13 @@ end
 ```
 --
 
-  break
+  break #nope!
 --
 
 ```
-word = "water"
+word = "finite"
 loop {
-  word.chop! # remove último caractere
+  word.chop! # it removes the last char
   break if word.empty?
 }
 ```
@@ -713,7 +713,7 @@ loop {
 ## while
 
 ```
-word = "water"
+word = "finite"
 while(word.size > 0) do
   word.chop!
 end
@@ -721,7 +721,7 @@ end
 --
 
 ```
-word = "water"
+word = "finite"
 begin
   word.chop!
 end while(word.size > 0)
@@ -731,7 +731,7 @@ end while(word.size > 0)
 ## until
 
 ```
-word = "water"
+word = "finite"
 begin
   word.chop!
 end until(word.empty?)
@@ -739,7 +739,7 @@ end until(word.empty?)
 --
 
 ```
-word = "water"
+word = "finite"
 until(word.empty?) do
   word.chop!
 end
@@ -747,8 +747,8 @@ end
 ---
 ## for
 ```
-word = "water"
-for char in "water".chars do
+word = "finite"
+for char in "finite".chars do
   puts char
 end
 ```
@@ -774,16 +774,16 @@ template: inverse
 --
 
 ```
-word = "water"
-for gota in word.chars do
-  puts gota
+word = "finite"
+for char in word.chars do
+  puts char
 end
 ```
 --
 
 ```
-word.each_char do |gota|
-  puts gota
+word.each_char do |char|
+  puts char
 end
 ```
 --
@@ -800,135 +800,36 @@ end
 --
 
 ```
-["Dr. Fulano", "Dr. Sicrano"]{{content}}
+["Dra. Fulana", "Dr. Sicrano"]{{content}}
 ```
 --
-.all?{|pro| pro.start_with?("Dr.")} #true
+.all?{|pro| pro.start_with?("Dr")} #true
 ---
 ## Proc
 
 ```
-{{content}}Proc.new {|pro| pro.start_with?("Dr.")}
+{{content}}Proc.new {|pro| pro.start_with?("Dr")}
 ```
 --
-validacao = 
---
-
-```
-validacao.call
-{{content}}
-```
---
-# NoMethodError: undefined method `start_with?' for nil:NilClass
+validation = 
 --
 
 ```
-validacao.call("Mestre Jackson") # false
+validation.call("Master Jackson") # false
 ```
 --
 
 ```
-Proc.new do |email, telefone|
-  email.include?("@") && telefone.include?("73")
+Proc.new do |email, phone|
+  email.include?("@") && phone.include?("73")
 end
 ```
----
-template: inverse
-## Challenge [?]  
---
-
-## 5?
----
-## Challenge [5]
-
-```
-things = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
-  [6,5,4], (7..10), 3]
-```
-
-* Imprima todos os pares em ordem decrescente.
-
---
-
-### Dicas:
-
-* `each`, `each_value`, `sort`.
-```
-print "{coisa} é um inteiro par" if coisa.is_a?(Fixnum) and coisa.even?
-```
-```
-case coisa
-  when Array, Range
-    coisa.each do |value|
-      #... 
-    end
-  when Hash #...
-  #...
-end
-```
----
-## Possíveis soluções
-
-```
-things = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
-  [6,5,4], (7..10), 3]
-pares = []
-
-things.each do |coisa|
-  case coisa
-    when Fixnum then pares << coisa if coisa.even?
-{{content}}
-```
---
-    when Array, Range
-      coisa.each do |value|
-        pares << value if value.even?
-      end
-{{content}}
---
-    when Hash
-      coisa.each_value do |value|
-        pares << value if value.is_a?(Fixnum) and value.even?
-      end
-  end
-end
-puts pares.sort.reverse
----
-## Possíveis soluções
-
-```
-things = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
-  [6,5,4], (7..10), 3]
-  pares = []
-
-{{content}}
-```
---
-pegador_de_par = Proc.new do |value|
-  pares << value if value.is_a?(Fixnum) and value.even?
-end
-
-{{content}}
---
-things.each do |coisa|
-  case coisa
-    when Fixnum then pegador_de_par.call(coisa)
-{{content}}
---
-    when Hash
-      coisa.each_value &pegador_de_par
-    when Array, Range
-      coisa.each &pegador_de_par
-  end
-end
-
-puts pares.sort.reverse
 ---
 
 template: inverse
 ## Methods
 ---
-## Definindo métodos
+## Defining methods
 
 ```
 def print_sum(value1, value2)
@@ -939,90 +840,90 @@ print_sum(10,21)
 --
 
 ```
-print media(10,30)
+print average(10,30)
 ```
 --
 
 ```
-def media(value1, value2)
+def average(value1, value2)
   return (value1 + value2) / 2
 end
 
-def media(value1, value2)
-  (value1 + value2) / 2 # retorna a última linha executada
+def average(value1, value2)
+  (value1 + value2) / 2 # returns the last line
 end
 
-print media(10, 30)
+print average(10, 30)
 ```
 ---
-## Definindo métodos
+## Defining methods
 Valor padrão para argumentos
 ```
-def media(value1, value2 = 6)
+def average(value1, value2 = 6)
 # ...
-def media(value1 = 0, value2 = 6)
+def average(value1 = 0, value2 = 6)
 # ...
-(irb)> media()
+(irb)> average()
 # 3
 ```
 ---
-## Definindo métodos
-Infinitos argumentos
+## Defining methods
+Infinite args
 --
 
 ```
-def configure_servidor(servidor, *computadores)
-  computadores.each do |computador|
-    computador.servidor = servidor
+def configure_host(host, *computers)
+  computers.each do |computer|
+    computer.host = host
   end
 end
 
-configure_servidor(minha_maquina, computador1, computador2, computador3)
+configure_host(machine, computer1, computer2, computer3)
 ```
 --
 
 ```
-def media(*values)
+def average(*values)
   values.reduce(:+) / values.size
 end
 ```
 ---
 ## Methods
-### E os blocos?
+### Blocks?
 
 ```
-def tudo_valido?(lista, &validador)
+def all_valid?(list, &validator)
 {{content}}
 ```
 --
-  lista.each do |elemento|
-    return false unless validador.call(elemento)
+  list.each do |element|
+    return false unless validator.call(element)
   end
   return true
 end
 
 {{content}}
 --
-resultado1 = tudo_valido?(["Dr. Fulano", "Dr. Sicrano"]) do |pro|
-  pro.start_with?("Dr.")
+result1 = all_valid?(["Dra. Fulana", "Dr. Sicrano"]) do |pro|
+  pro.start_with?("Dr")
 end
-puts resultado1 # true
+puts result1 # true
 
 {{content}}
 --
-resultado2 = tudo_valido?(["Dr. Fulano", "Mestre Sicrano"]) do |pro|
-  pro.start_with?("Dr.")
+result2 = all_valid?(["Dra. Fulana", "Master Sicrano"]) do |pro|
+  pro.start_with?("Dr")
 end
-puts resultado2 # false
+puts result2 # false
 
 ---
 ## Methods
-### E os blocos?
+### Blocks?
 
 ```
-def tudo_valido?(lista)
-  lista.each do |elemento|
-    return false unless yield(elemento)
+def all_valid?(list)
+  list.each do |element|
+    return false unless yield(element)
   end
   return true
 end
@@ -1035,10 +936,10 @@ block_given?
 --
 
 ```
-def tudo_valido?(lista)
-  return true if lista.empty? || !block.given?
-  lista.each do |elemento|
-    return false unless yield(elemento)
+def all_valid?(list)
+  return true if list.empty? || !block.given?
+  list.each do |element|
+    return false unless yield(element)
   end
   return true
 end
@@ -1056,10 +957,10 @@ end
 ```
 ---
 ## Methods
-### Objetos?
+### Objects?
 ```
-minha_media = method(:media)
-puts minha_media.call(1,2,3) # 2
+my_average = method(:average)
+puts my_average.call(1,2,3) # 2
 ```
 --
 
@@ -1068,223 +969,113 @@ minha_media.class # Method
 ```
 ---
 template: inverse
-## Classe
+## Class
 ---
-## Classe  
+## Class  
 ```
-meu_tecoteco = Aviao.new("ID7-2")
-outro_tecoteco = Aviao.new("BZ-1")
-{{content}}
-```
---
-
-meu_tecoteco.acelera(20)
-meu_tecoteco.acelera(90)
-outro_tecoteco.acelera(90)
-
-meu_tecoteco.decola!
-outro_tecoteco.decola!
-
-{{content}}
---
-
-print Aviao.quantidade        # 2
-print meu_tecoteco.voando?    # true se a velocidade > 100
-print outro_tecoteco.voando?  # false
---
-
-```
-class Aviao
+class Airplane
 {{content}}
 end
 ```
 --
-  def initialize(registro)
-    @registro = registro
+  def initialize(code)
+    @code = code
   end
----
-## Classe
-
-### meu_tecoteco: variável local
 --
 
-### @registro: variável de instância
---
-
-### @@contador: variável de classe
---
-
-### $torre: variável global
----
-## Classe: Avião
 ```
-class Aviao
-  @@contador = 0
-  def initialize(registro)
-    @registro = registro
-    @velocidade = 0
-    @@contador += 1
-  end
-{{content}}
+airplane = Airplane.new("ID7-2")
+```
+---
+## Variable Types
+
+### airplane: local variable
+--
+
+### @code: instance variable
+--
+
+### @@counter: class variable
+--
+
+### $tower: global variable
+
+---
+## Inheritance
+--
+
+```
+class Jet < Airplane
 end
 ```
---
-  def self.quantidade # método de classe
-    @@contador
-  end
---
-
-```
-print Aviao.quantidade
-```
----
-## Classe: Aviao
-
-```
-class Aviao
-  def initialize(registro)
-    @registro = registro
-    @velocidade = 0
-    @@contador += 1
-  end
-
-  def self.quantidade # método de classe
-    @@contador
-  end
-
-  def acelera(vel = 1)
-    @velocidade += vel
-  end
-{{content}}
-end
-```
---
-  def decola!
-    @no_ar = true if vel > 100
-  end
-{{content}}
---
-  def voando?
-    @no_ar
-  end
----
-## Classe: Aviao
-
-```
-class Aviao
-  @@contador = 0
-  attr_accessor :registro, :velocidade, :no_ar
-
-{{content}}
-```
---
-  def initialize(id)
-    self.registro = id
-    @velocidade = 0
-    @@contador += 1
-  end
-{{content}}
---
-  def self.quantidade; @@contador; end
-  def acelera(vel = 1)
-    @velocidade += vel
-  end
-  def decola!
-    @no_ar = true if vel > 100
-  end
-  def voando?; 
-    self.no_ar
-  end
-end
-
-{{content}}
---
-aviao = Aviao.new("test")
-puts aviao.registro       # test
-puts aviao.no_ar = true
-puts aviao.voando?        # true
----
-## Herança
---
-
-### Classe Jato
-
-* voa com velocidade maior que 200
-* mesmo contador de Aviao
-
---
-
-```
-class Jato < Aviao
-{{content}}
-end
-
-meu_jatinho = Jato.new("AZ-5")
-meu_jatinho.acelera(150)
-meu_jatinho.decola!
-meu_jatinho.voando?
-```
---
-  def decola!
-    @no_ar = true if vel > 200
-  end
 ---
 ## Module
 ```
 class Boat
-  attr_accessor :velocidade
+  attr_accessor :speed
   # (...)
 end
-class Jato < Aviao
-  attr_accessor :velocidade
+class Jet < Airplane
+  attr_accessor :speed
   # (...)
 end
 ```
 --
 
 ### Nitro!
---
 
 ```
 module Turbo
   def nitro!
-    @velocidade += 200
+    @speed += 200
   end
 end
 ```
 --
 
 ```
-class Jato < Aviao
+class Jet < Airplane
   include Turbo
 end
-class Barco
+class Boat
   include Turbo
 end
 ```
 ---
+name: require
+
 ## require
 ``` bash
-projeto/lib/turbo.rb
-projeto/lib/aviao.rb
+project/lib/asteroid.rb
+project/lib/spaceship.rb
 ```
 --
 
 ``` bash
-ruby -Ilib controle_aereo.rb
+ruby -Ilib game.rb
 ```
 ```
-require 'turbo'
-require 'aviao'
+require 'asteroide'
+require 'spaceship'
 ```
 --
 
 ``` bash
-ruby -I. controle_aereo.rb
+ruby -I. game.rb
 ```
 ```
-require 'lib/turbo'
-require 'lib/aviao'
+require 'lib/asteroid'
+require 'lib/spaceship'
+```
+
+--
+
+``` bash
+ruby game.rb
+```
+```
+require_relative 'lib/asteroid'
+require_relative 'lib/spaceship'
 ```
 
 ---
