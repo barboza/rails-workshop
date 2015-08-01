@@ -108,35 +108,10 @@ layout: true
 ---
 # #ruby
 ---
-## Sinform 2012 - UESC
-## Ruby workshop
----
 layout: false
 
-## Sobre mim
-
-* Hi, I'm Roberto
-* Formado pela UESC
---
-
-* Trabalho com Ruby desde 2006
---
-
-* Techmobil
---
-
-* Bopia
-* Todobebe
---
-
-* e-Core
----
 ## Agenda
-* Preparar o Ambiente
-* História
-* Por que aprender Ruby?
-* O que que é Ruby?
-* Um pouco de P.O.O.
+* Intro
 * Variáveis, Constantes e Métodos
 * Tipos Básicos
 * Coleções
@@ -149,167 +124,24 @@ layout: false
 ---
 template: inverse
 
-## Preparando o Ambiente
-
----
-
 ## Ambiente
 
-### Verificando a instalação
+---
+layout: false
 
-``` bash
-$ which ruby
-/usr/bin/ruby
-$ ruby -v
-ruby 1.9.3dev (2011-07-31 revision 32789) [x86_64-darwin11.3.0]
-```
-
-[http://www.ruby-lang.org/en/downloads/](http://www.ruby-lang.org/en/downloads/)
+REPL - [http://repl.it/languages/Ruby](http://repl.it/languages/Ruby)
 
 --
 
-### Pequenos exemplos: Interactive Ruby (irb)
 ``` bash
 $ irb
 (irb)> print 'Hello World!'
 # Hello World!
 ```
-
----
-## Ambiente
-
-### Exemplos Maiores: Arquivos
-
-Qualquer editor com syntax highlighting  
-Gedit, SublimeText, SciTE, Scribes, Emacs, Vim
-
---
-
-``` bash
-$ ruby hello.rb
-# Hello World!
-```
---
-
-``` bash
-(irb)> load 'hello.rb'
-# Hello World!
-```
----
-template: inverse
-senta que lá vem
-## História
----
-class: bg-matz, bg-dark
-### Yukihiro Matsumoto a.k.a. Matz  
---
-
-## Matz + Perl + Python + Smalltalk + Lisp = Ruby
---
-
-<blockquote>Eu queria uma linguagem mais poderosa que o **Perl** e mais orientada a objeto que **Python**</blockquote>
-
---
-
-## 1993 - 1995 -> Ruby 0.95  
-## 2000 - primeiro livro em inglês
-## 2004 - Rails
----
-template: inverse
-# Pq?
----
-name: pq
-## Por que aprender Ruby?
---
-
-### Fácil de ler
-```
-5.times { print 'Ê' } if Date.today.friday?
-# ÊÊÊÊÊ
-```
-```
-exit unless "restaurante".start_with? "rest"
-```
---
-
-### Fácil de aprender   
-
-<blockquote>Aprendi Ruby mais rápido do que qualquer outra linguagem, de um total de 30 ou 40; levei 3 dias para ficar mais confortável com Ruby do que com Perl, após 8 anos de Perl hacking.<cite>Steve Yegge</cite></blockquote>
----
-template: pq
-
-### Multi-paradigma
-* OO (Java, Smalltalk)  
-* Funcional (Haskell)  
-* Imperativa (Forth, Ada)
-
---
-
-### Comunidade  
-
-* Github - 2º  
-* [Module Counts](http://www.modulecounts.com/) - 1º (44.818 gems, 899.065.357 downloads)  
-* 487 livros na Amazon  
-* Conferências! (RubyConfBR - SP, Rock'n Rails - ES)  
-
----
-template: pq
-name: who
-### Quem usa? (Mercado!)  
---
-
-* Funny or Die
-* Github
-* ThoughtWorks
-* Yellow Pages
-* Globo
-* Hulu
-* Groupon
-* Techmobil
-* Twitter
-* e-Core
-* EA
-* Eu!
----
-template: who
-* Amazon
-* BBC
-* Cisco
-* IBM
-* NASA
-* Oracle
-* Siemens
-* Yahoo!
-* New York Times
-* Google
-* Chicago Tribune
-* NBC
-* [High Profile Organisations using Rails](http://www.workingwithrails.com/high-profile-organisations)
 ---
 template: inverse
 
-## O que que é Ruby?
-
----
-## Linguagem
---
- Interpretada
---
-(MRI)
---
- e Compilada
---
-
-### - [Rubinius](http://rubini.us/) -> [RubySpec](http://rubyspec.org/)
-### - [JRuby](http://www.jruby.org/)
---
-
-### - [mruby](https://github.com/mruby/mruby)
---
-
-### - IronRuby
-### - MacRuby
-### - Cardinal
+## Intro
 
 ---
 ## De graça!
