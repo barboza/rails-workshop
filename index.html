@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Ruby Workshop - Roberto Soares - SINFORM 2012</title>
+    <title>RailsGirls - Workshop</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="https://github.com/downloads/gnab/remark/remark-0.4.2.min.js" type="text/javascript">
       {"highlightStyle": "monokai",
@@ -93,9 +93,6 @@
       color: white;
       text-shadow: 0 0 20px #333;
     }
-    .bg-matz {
-      background-image:url(images/matz.jpeg);
-    }
 
     </style>
   </head>
@@ -113,6 +110,7 @@ layout: false
 ## Agenda
 * Intro
 * Variáveis, Constantes e Métodos
+* Classes
 * Tipos Básicos
 * Coleções
 * Controle de fluxo
@@ -144,74 +142,9 @@ template: inverse
 ## Intro
 
 ---
-## De graça!
 
-### MRI - GPL e Ruby open source license
-### JRuby - GPL e LGPL
-### Rubinius - BSD
----
+##
 
-## Tudo é objeto
---
-
-### Tipos básicos
-### Métodos
-### até classes!
---
-
-## E o que é um objeto?
-
----
-template: inverse
-
-## Um pouco de P.O.O.
-
----
-## Sistema de Carimbo para Prof
---
-
-### Fulano da Silva  
-### Maria Joaquina  
---
-<hr/>   
-### Bacharel
-### Mestre
-### Doutor
---
-<hr/>   
-### Mestre -> Doutor
-### mensagem para o carimbo
----
-## Classe, tipo: Professor  
---
-
-## Objetos, instâncias:
-### Doutor Fulano da Silva
-### Mestre Maria Joaquina
----
-## Classe: Professor
-### nome
-### título
---
-
-## Representam o estado do objeto
----
-
-## Classe: Professor
---
-
-### upgrade!
-### é_doutor?
-### messagem_para_o_carimbo
---
-
-## Comportamento
-## Troca de mensagens
-
----
-## Representação
-### Estado -> Variáveis  
-### Comportamento -> Métodos
 ---
 template: inverse
 ## Variáveis, constantes e métodos
@@ -220,10 +153,8 @@ template: inverse
 
 ## Variáveis
 
-Referências para seus dados.  
-A atribuição é realizada com `=`.
 ```
-nome = "Fulano da Silva"
+nome = "Beltrana"
 _posição_no_ranking = 7
 ```
 --
@@ -263,8 +194,6 @@ MINHA_CONSTANTE = "test"
 ---
 ## Métodos
 
-Um pedaço de código para executar uma tarefa.
-
 ```
 print
 print()
@@ -283,34 +212,6 @@ puts "Nome:"
 nome = gets
 puts "Olá #{nome}!"
 ```
----
-## Juntando tudo
-
-```
-prof1 = Professor.new("Fulano da Silva") # instância de Professor
-
-{{content}}
-```
---
-prof1.é_doutor? # false
-prof1.mensagem_para_o_carimbo # Mestre Fulano da Silva
---
-
-```
-. # chamar um método
-```
---
-
-```
-print Professor.new("Maria").mensagem_para_o_carimbo
-```
---
-
-```
-maria = Professor.new("Maria Joaquina")
-print(maria.mensagem_para_o_carimbo)
-```
-
 ---
 template: inverse
 ## Tipos Básicos
@@ -440,29 +341,7 @@ template: inverse
 (irb)> :casa.capitalize
 (irb)> Symbol.all_symbols.size # 2628
 ```
----
-## Symbol
-### Mais rápido
 
-```
-require 'benchmark'
-Benchmark.measure{ 10_000_000.times { :test } }.total             # 0.64
-Benchmark.measure{ 10_000_000.times { "test" } }.total            # 1.62
-
-Benchmark.measure{ 10_000_000.times { :test == :test } }.total    # 1.01
-Benchmark.measure{ 10_000_000.times { "test" == "test" } }.total  # 3.18
-```
---
-
-### Possui poucos métodos
-
-```
-(irb)> String.instance_methods.size - Symbol.instance_methods.size # 83
-(irb)> :casa.size     # 4
-(irb)> :casa.empty?   # false
-(irb)> :casa.to_s     # casa
-
-```
 ---
 ## nil
 
@@ -470,13 +349,13 @@ Benchmark.measure{ 10_000_000.times { "test" == "test" } }.total  # 3.18
 --
 
 ```
-(irb)> carro = nil
-(irb)> carro.acelera!
-# NoMethodError: undefined method `acelera!' for nil:NilClass
+(irb)> car = nil
+(irb)> car.gas!
+# NoMethodError: undefined method `gas!' for nil:NilClass
 {{content}}
 ```
 --
-(irb)> carro.class
+(irb)> car.class
 # NilClass
 --
 
@@ -548,43 +427,43 @@ puts "A média do aluno #{aluno} foi #{media_formatada}"
 
 ---
 template: inverse
-## Coleções  
+## Collections  
 ---
 ## Array  
 ```
-coisas = [1,"oi", 33, :test]
+things = [1,"oi", 33, :test]
 ```
 --
 
 ```
-print coisas[0]
+print things[0]
 # 1
 {{content}}
 ```
 --
-coisas.at(2)
-coisas.fetch(10, "Não encontrado!")
-coisas[-3]
-coisas.values_at(1,3)
+things.at(2)
+things.fetch(10, "Não encontrado!")
+things[-3]
+things.values_at(1,3)
 {{content}}
 --
 
-coisas << "qualquer coisa"
-coisas.insert(-1,3)
-coisas.push 7
+things << "qualquer coisa"
+things.insert(-1,3)
+things.push 7
 {{content}}
 --
 
-coisas + ["abc"]
-coisas * 2
-coisas.join(", ")
+things + ["abc"]
+things * 2
+things.join(", ")
 {{content}}
 --
 
-coisas.pop
-coisas.shift
-coisas.delete_at 4
-coisas.delete 4
+things.pop
+things.shift
+things.delete_at 4
+things.delete 4
 {{content}}
 ---
 ## Array   
@@ -649,13 +528,13 @@ paginas = {:home => "index.html", :about => "page2.html"}
 --
 
 ```
-coisas = {:oi => "Hello!", "um" => 1, 1.2 => Float, abc: %w(a b c)}
+things = {:oi => "Hello!", "um" => 1, 1.2 => Float, abc: %w(a b c)}
 
 {{content}}
 ```
 --
-coisas[1.2]       # Float
-coisas[:abc][1]   # "b"
+things[1.2]       # Float
+things[:abc][1]   # "b"
 --
 
 ```
@@ -1174,7 +1053,7 @@ template: inverse
 ## Desafio [5]
 
 ```
-coisas = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
+things = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
   [6,5,4], (7..10), 3]
 ```
 
@@ -1202,11 +1081,11 @@ end
 ## Possíveis soluções
 
 ```
-coisas = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
+things = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
   [6,5,4], (7..10), 3]
 pares = []
 
-coisas.each do |coisa|
+things.each do |coisa|
   case coisa
     when Fixnum then pares << coisa if coisa.even?
 {{content}}
@@ -1229,7 +1108,7 @@ puts pares.sort.reverse
 ## Possíveis soluções
 
 ```
-coisas = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
+things = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
   [6,5,4], (7..10), 3]
   pares = []
 
@@ -1242,7 +1121,7 @@ end
 
 {{content}}
 --
-coisas.each do |coisa|
+things.each do |coisa|
   case coisa
     when Fixnum then pegador_de_par.call(coisa)
 {{content}}
