@@ -103,22 +103,21 @@ name: inverse
 class: center, middle, bg-red, bg-dark
 layout: true
 ---
-# #ruby
+# Ruby
 ---
 layout: false
 
 ## Agenda
 * Intro
-* Variáveis, Constantes e Métodos
-* Classes
-* Tipos Básicos
-* Coleções
-* Controle de fluxo
-* Blocos e Procs
-* Definindo Métodos
-* Definindo Classes
-* Tipos de variáveis
-* Module
+* Common Data Types
+* Declaring variables/constants
+* Collections
+* Flow control
+* Blocks and Procs
+* Declaring Methods
+* Declaring Classes
+* Type of variable
+* Declaring Modules
 ---
 template: inverse
 
@@ -147,11 +146,11 @@ template: inverse
 
 ---
 template: inverse
-## Variáveis, constantes e métodos
+## Declaring variables/constants
 
 ---
 
-## Variáveis
+## Variables
 
 ```
 nome = "Beltrana"
@@ -159,35 +158,35 @@ _posição_no_ranking = 7
 ```
 --
 
-O primeiro caracter não deve ser maiúsculo.
+lowercase!
 ```
-valor1 = 1233
-valor2 = 5793
+valueA = 1233
+value2 = 5793
 ```
 --
 
 ```
-total = valor1 + valor2
+sum = valueA + value2
 ```
 ---
 
-## Constantes
+## Constants
 ```
-(irb)> Nome = "John"
-(irb)> Nome = "João"
-# warning: already initialized constant Nome
+(irb)> Name = "John"
+(irb)> Name = "João"
+# warning: already initialized constant Name
 ```
 --
 
 ```
-(irb)> Nome == "João"
+(irb)> Name == "João"
 # true
 ```
 --
 
 ```
 PI = 3.141592653589793
-MINHA_CONSTANTE = "test"
+A_CONSTANT = "test"
 (irb)> TRUE
 # true
 ```
@@ -214,9 +213,9 @@ puts "Olá #{nome}!"
 ```
 ---
 template: inverse
-## Tipos Básicos
+## Common Data Types
 ---
-## Números
+## Numbers
 ```
 (irb)> 5 + 2 ** 2     # 9
 (irb)> 10 - 4 / - 2   # 12
@@ -271,8 +270,8 @@ template: inverse
 --
 
 ```
-(irb)> "O resultado é #{5 ** 2}"
-"O resultado é 25"
+(irb)> "The result is #{5 ** 2}"
+"The result is 25"
 ```
 --
 
@@ -282,8 +281,8 @@ template: inverse
 --
 
 ```
-(irb)> "O resultado é \#{5 ** 2}"
-# "O resultado é \#{5 ** 2}" 
+(irb)> "The result is \#{5 ** 2}"
+# "The result is \#{5 ** 2}" 
 ```
 --
 
@@ -303,11 +302,11 @@ template: inverse
 ---
 ## String  
 ```
-(irb)> "casa".include? "asa"  # true
-(irb)> "casa".length          # 4
-(irb)> "casa".gsub("a","A")   # "cAsA"
-(irb)> "  casa  ".rstrip      # "  casa"
-(irb)> "casa".count("a")      # 2
+(irb)> "home".include? "ome"  # true
+(irb)> "home".length          # 4
+(irb)> "home".gsub("e","E")   # "homE"
+(irb)> "  home  ".rstrip      # "  home"
+(irb)> "home".count("o")      # 1
 ```
 --
 
@@ -319,33 +318,35 @@ template: inverse
 ---
 ## Symbol
 ```
-:casa
+:home
 
 {{content}}
 ```
 --
-:"minha casa"
+:"my home"
 :"1"
 --
 
 ### Único   
 ```
 (irb)> Symbol.all_symbols.size # 2626
-(irb)> :casa
+(irb)> :home
+(irb)> Symbol.all_symbols.size # 2627
+(irb)> :home
 (irb)> Symbol.all_symbols.size # 2627
 ```
 --
 
 ### Imutável
 ```
-(irb)> :casa.capitalize
+(irb)> :home.capitalize
 (irb)> Symbol.all_symbols.size # 2628
 ```
 
 ---
 ## nil
 
-### vazio, vácuo, nada!
+### void, nada!
 --
 
 ```
@@ -369,9 +370,9 @@ true.class        # TrueClass
 
 ---
 template: inverse
-## Desafio!
+## Challenge!
 ---
-## Desafio!
+## Challenge!
 ```
 nota1 = 3.5
 nota2 = "  5,2"
@@ -578,9 +579,9 @@ print h[:b]   # vazio...
 ---
 template: inverse
 
-## Desafio! [2]
+## Challenge! [2]
 ---
-## Desafio! [2]
+## Challenge! [2]
 
 ```
 dados = {language: "Perl", author: "Keith Bostic", encryption: ('A'..'R')}
@@ -760,8 +761,8 @@ end
 ---
 ## case
 ```
-valor = rand(10) + 1
-case valor
+value = rand(10) + 1
+case value
   when 1      then "UHH!"
   when 2,3    then "uhh!"
   when 4,5,6  then "na média"
@@ -772,8 +773,8 @@ end
 --
 
 ```
-valor = rand(10) + 1
-case valor
+value = rand(10) + 1
+case value
   when 1
     "UHH!"
   when 2,3
@@ -789,8 +790,8 @@ end
 ---
 ## case  
 ```
-valor = ["jaca", "laranja"][rand(2)]
-print case valor
+value = ["jaca", "laranja"][rand(2)]
+print case value
   when "jaca"
     "1 real"
   when "laranja"
@@ -810,9 +811,9 @@ end
 ```
 ---
 template: inverse
-## (mini) Desafio! [3]
+## (mini) Challenge! [3]
 ---
-## (mini) Desafio! [3]
+## (mini) Challenge! [3]
 ```
 "A média do aluno Jackson foi 6,68."
 "Sua prova final de Cálculo será Domingo." # quando a média for menor que 5.5
@@ -924,22 +925,22 @@ end
 --
 
 ```
-for chave, valor in {a: 1, b: 2} do
-  puts "#{chave} => #{valor}"
+for chave, value in {a: 1, b: 2} do
+  puts "#{chave} => #{value}"
 end
 ```
 ---
 template: inverse
 
-## Desafio [4]
+## Challenge [4]
 --
 
 ### (aff... outro...)
 
 ---
-## Desafio [4]
+## Challenge [4]
 
-* Ler valores com `gets` até receber `'\n'` (vazio)  
+* Ler values com `gets` até receber `'\n'` (vazio)  
 * Calcular média e imprimir
 
 --
@@ -961,11 +962,11 @@ end
 --
 
 ```
-total = 0
+sum = 0
 for nota in notas do
-  total += nota
+  sum += nota
 end
-media = total / notas.size
+media = sum / notas.size
 ```
 --
 
@@ -1045,12 +1046,12 @@ end
 ```
 ---
 template: inverse
-## Desafio [?]  
+## Challenge [?]  
 --
 
 ## 5?
 ---
-## Desafio [5]
+## Challenge [5]
 
 ```
 things = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
@@ -1070,7 +1071,7 @@ print "{coisa} é um inteiro par" if coisa.is_a?(Fixnum) and coisa.even?
 ```
 case coisa
   when Array, Range
-    coisa.each do |valor|
+    coisa.each do |value|
       #... 
     end
   when Hash #...
@@ -1092,14 +1093,14 @@ things.each do |coisa|
 ```
 --
     when Array, Range
-      coisa.each do |valor|
-        pares << valor if valor.even?
+      coisa.each do |value|
+        pares << value if value.even?
       end
 {{content}}
 --
     when Hash
-      coisa.each_value do |valor|
-        pares << valor if valor.is_a?(Fixnum) and valor.even?
+      coisa.each_value do |value|
+        pares << value if value.is_a?(Fixnum) and value.even?
       end
   end
 end
@@ -1115,8 +1116,8 @@ things = [{nome: "Zeca", idade: 2}, {nome: "Amijubi", idade: 1}, 0,
 {{content}}
 ```
 --
-pegador_de_par = Proc.new do |valor|
-  pares << valor if valor.is_a?(Fixnum) and valor.even?
+pegador_de_par = Proc.new do |value|
+  pares << value if value.is_a?(Fixnum) and value.even?
 end
 
 {{content}}
@@ -1142,10 +1143,10 @@ template: inverse
 ## Definindo métodos
 
 ```
-def print_total(valor1, valor2)
-  print valor1 + valor2
+def print_sum(value1, value2)
+  print value1 + value2
 end
-print_total(10,21)
+print_sum(10,21)
 ```
 --
 
@@ -1155,12 +1156,12 @@ print media(10,30)
 --
 
 ```
-def media(valor1, valor2)
-  return (valor1 + valor2) / 2
+def media(value1, value2)
+  return (value1 + value2) / 2
 end
 
-def media(valor1, valor2)
-  (valor1 + valor2) / 2 # retorna a última linha executada
+def media(value1, value2)
+  (value1 + value2) / 2 # retorna a última linha executada
 end
 
 print media(10, 30)
@@ -1169,9 +1170,9 @@ print media(10, 30)
 ## Definindo métodos
 Valor padrão para argumentos
 ```
-def media(valor1, valor2 = 6)
+def media(value1, value2 = 6)
 # ...
-def media(valor1 = 0, valor2 = 6)
+def media(value1 = 0, value2 = 6)
 # ...
 (irb)> media()
 # 3
@@ -1193,8 +1194,8 @@ configure_servidor(minha_maquina, computador1, computador2, computador3)
 --
 
 ```
-def media(*valores)
-  valores.reduce(:+) / valores.size
+def media(*values)
+  values.reduce(:+) / values.size
 end
 ```
 ---
@@ -1426,10 +1427,10 @@ puts aviao.voando?        # true
 ---
 template: inverse
 
-## Desafio [6]
+## Challenge [6]
 ---
 
-## Desafio [6]
+## Challenge [6]
 ### Professor
 
 * Atributos: nome, titulo  
