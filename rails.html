@@ -233,7 +233,7 @@ class: center, middle
 ---
 class: center, middle
 
-# test/ | spec/
+# test/ ~= spec/
 
 ---
 class: center, middle
@@ -289,6 +289,188 @@ rake tasks
 --
 
 ### ORM - Object Relational Mapping
+
+---
+template: inverse
+
+## Métodos
+
+---
+
+### .new
+
+```
+$-> post =  Post.new
+=> #<Post id: nil, title: nil, content: nil, created_at: nil, updated_at: nil>
+{{content}}
+```
+
+--
+
+$-> post.title = 'Iniciando com Rails'
+
+--
+
+### .create
+
+```
+$-> Post.create(title: 'Título', content: 'Conteúdo')
+=> #<Post id: 1, title: "Título", content: "conteúdo", created_at: "2015-08-01...
+{{content}}
+```
+
+--
+
+$-> post.save
+
+---
+
+### .find
+
+```
+$-> first_post =  Post.find(1)
+=> #<Post id: 1, title: "Título", content: "conteúdo", created_at: "2015-08-01...
+```
+
+--
+
+### .where
+
+```
+$-> post =  Post.where(title: 'Título')
+=> #<Post id: 1, title: "Título", content: "conteúdo", created_at: "2015-08-01...
+```
+
+--
+
+### .first, .last
+
+```
+$-> post =  Post.first
+=> #<Post id: 1, title: "Título", content: "conteúdo", created_at: "2015-08-01...
+```
+
+---
+
+### .update
+
+```
+$-> post.update(title: 'Novo título')
+=> #<Post id: 1, title: "Novo título", content: "conteúdo", created_at: "2015-...
+```
+
+--
+
+### .destroy
+
+```
+$-> post.destroy
+```
+
+--
+
+### .delete
+
+```
+$-> post.destroy
+```
+
+---
+template: inverse
+
+# Validações
+
+---
+
+## Presença
+
+```
+class Post < ActiveRecord::Base
+  validates :title, presence: true
+end
+```
+
+--
+
+## Helpers
+
+```
+validates :title, length: { minimum: 10 }
+{{content}}
+```
+
+--
+
+validates :title, uniqueness: true
+{{content}}
+
+--
+
+validates :content, length: { in: 50..2000 }
+
+---
+template: inverse
+
+# Associações
+
+---
+
+## 1-X
+
+```
+class Post < ActiveRecord::Base
+  has_many :comments
+end
+{{content}}
+```
+
+--
+
+class Comment < ActiveRecord::Base
+  belongs_to :post
+end
+
+--
+
+## X-X
+
+```
+class Post < ActiveRecord::Base
+  has_and_belongs_to_many :authors
+end
+{{content}}
+```
+
+--
+
+class Author < ActiveRecord::Base
+  has_and_belongs_to_many :posts
+end
+
+---
+template: inverse
+
+# Lets do it!
+
+---
+
+## Registro de empréstimos
+
+--
+
+### - Registrar um amigo
+
+--
+
+### - Registrar um objeto
+
+--
+
+### - Emprestar um objeto
+
+--
+
+### - Devolver um objeto
 
 
     </textarea>
