@@ -241,7 +241,7 @@ template: inverse
 (irb)> 1 != 1         # false
 ```
 ---
-## Números  
+## Numbers
 ```
 (irb)> 0.zero?        # serious?
 (irb)> 2.even?        # true
@@ -370,69 +370,11 @@ true.class        # TrueClass
 
 ---
 template: inverse
-## Challenge!
----
-## Challenge!
-```
-nota1 = 3.5
-nota2 = "  5,2"
-nota3 = :"0xA"
-nota4 = gets # 8
-aluno = "jackson"
-```
-```
-"A média do aluno Jackson foi 6,68."
-```
---
-
-### Dicas
-
-[http://www.ruby-doc.org/](http://www.ruby-doc.org/)  
-```
-(irb)>
-```
-
----
-## Possível solução
-
-```
-# encoding: UTF-8
-
-nota1 = 3.5
-nota2 = "  5,2"
-nota3 = :"0xA"
-nota4 = gets # 8
-
-aluno = "jackson"
-
-{{content}}
-```
---
-nota2 = nota2.gsub(",",".").to_f
-nota3 = nota3.to_s.hex
-nota4 = nota4.to_f
-
-aluno = aluno.capitalize
-
-{{content}}
---
-media = (nota1 + nota2 + nota3 + nota4) / 4
-
-{{content}}
---
-media_formatada = media.round(2).to_s.gsub(".", ",")
-
-{{content}}
---
-puts "A média do aluno #{aluno} foi #{media_formatada}"
-
----
-template: inverse
 ## Collections  
 ---
 ## Array  
 ```
-things = [1,"oi", 33, :test]
+things = [1,"hi", 33, :test]
 ```
 --
 
@@ -443,13 +385,13 @@ print things[0]
 ```
 --
 things.at(2)
-things.fetch(10, "Não encontrado!")
+things.fetch(10, "Nope!")
 things[-3]
 things.values_at(1,3)
 {{content}}
 --
 
-things << "qualquer coisa"
+things << "anything"
 things.insert(-1,3)
 things.push 7
 {{content}}
@@ -469,8 +411,8 @@ things.delete 4
 ---
 ## Array   
 ```
-%w(casa elefante maçã)
-# ["casa", "elefante", "maçã"]
+%w(toy horse apple)
+# ["toy", "horse", "apple"]
 Array.new(3,2)
 # [2,2,2]
 ```
@@ -514,17 +456,17 @@ Date.today..Date.today.next_year
 ---
 ## Hash
 ```
-paginas = {home: "index.html", about: "page2.html"}
+pages = {home: "index.html", about: "page2.html"}
 {{content}}
 ```
 --
-paginas[:home]  # "index.html"
-paginas["home"] # nil
+pages[:home]  # "index.html"
+pages["home"] # nil
 --
 
 ```
 # Ruby 1.8.*
-paginas = {:home => "index.html", :about => "page2.html"}
+pages = {:home => "index.html", :about => "page2.html"}
 ```
 --
 
@@ -539,14 +481,14 @@ things[:abc][1]   # "b"
 --
 
 ```
-mais_simples = {a: 1, b: 2}
+simple = {a: 1, b: 2}
 
 {{content}}
 ```
 --
-mais_simples.values   # [1,2]
-mais_simples.keys     # [:a, :b]
-mais_simples.to_a     # [[:a, 1], [:b, 2]]
+simple.values   # [1,2]
+simple.keys     # [:a, :b]
+simple.to_a     # [[:a, 1], [:b, 2]]
 
 {{content}}
 --
@@ -579,89 +521,8 @@ print h[:b]   # vazio...
 ---
 template: inverse
 
-## Challenge! [2]
----
-## Challenge! [2]
-
-```
-dados = {language: "Perl", author: "Keith Bostic", encryption: ('A'..'R')}
-palavras = ["The only language", "the same before", "that looks", "and after"]
-pontuacao = ["-", "."]
-resposta = "" # Recrie a mensagem abaixo
-```
-```
-puts resposta == "Perl - The only language that looks the same before and\
-after RSA encryption. - Keith Bostic"  # true
-```
---
-
-## Dica
-```
-resposta = dados[:language] + " #{pontuacao[0]} "
-# "Perl - "
-
-```
----
-## Possível Solução
-
-```
-dados = {language: "Perl", author: "Keith Bostic", encryption: ('A'..'R')}
-palavras = ["The only language", "the same before", "that looks", "and after"]
-pontuacao = ["-", "."]
-
-{{content}}
-```
---
-resposta = dados[:language] + " #{pontuacao[0]} "
-# "Perl - "
-
-{{content}}
---
-resposta << [palavras[0], palavras[2], palavras[1], palavras[3]].join(" ")
-# "Perl - The only language that looks the same before and after"
-
-{{content}}
---
-resposta << " " + dados[:encryption].last +
-  dados[:encryption].last.next +
-  dados[:encryption].begin 
-# "Perl - The only language that looks the same before and after RSA"
-
-{{content}}
---
-resposta << " " + dados.keys.last.to_s + pontuacao[1]
-# "Perl - The only language that looks the same before and after RSA encryption."
-
-{{content}}
---
-resposta << " #{pontuacao[0]} #{dados[:author]}"
-# "Perl - The only language that looks the same before and after RSA encryption.
-# - Keith Bostic"
-
-{{content}}
---
-print "Perl - The only language that looks the same before and after\
-RSA encryption. - Keith Bostic" == resposta # true
-
----
-template: inverse
-
 ## Controle de fluxo
 
----
-## Fluxo
-```
-print '1'
-print '2'
-print '3'
-```
---
-
-### linha após linha
---
-
-### E se eu desejar só imprimir '2' se hoje for terça?
-### E se eu desejar imprimir '3' até o mar virar sertão?
 ---
 template: inverse
 
@@ -811,38 +672,19 @@ end
 ```
 ---
 template: inverse
-## (mini) Challenge! [3]
+
+## Challenge!
 ---
-## (mini) Challenge! [3]
-```
-"A média do aluno Jackson foi 6,68."
-"Sua prova final de Cálculo será Domingo." # quando a média for menor que 5.5
-"Sua prova final de Adm. será Sexta." # quando a média for entre 5.5 e 6.9
-```
---
+## Challenge!
 
-## Dica
-use if, unless ou case
+Given a number sequence as input, calculate:
+* Min value
+* Number of elments
+* Average value
 
----
-## Possíveis soluções
+Example: "6, 9, 15, -2, 92, 11"
+* -2
 
-```
-case media
-  when 0..5.5 then print "Sua prova final de Cálculo será Domingo."
-  when 5.51...7 then print "Sua prova final de Adm será Sexta."
-end
-```
---
-
-```
-final = case media
-  when 0..5.5 then {disciplina: "Cálculo", dia: "Domingo"}
-  when 5.51...7 then {disciplina: "Adm.", dia: "Sexta"}
-end
-
-print "Sua prova final de #{final[:disciplina]} será #{final[:dia]}" if final
-```
 ---
 template: inverse
 
@@ -1425,30 +1267,6 @@ puts aviao.registro       # test
 puts aviao.no_ar = true
 puts aviao.voando?        # true
 ---
-template: inverse
-
-## Challenge [6]
----
-
-## Challenge [6]
-### Professor
-
-* Atributos: nome, titulo  
-* Métodos: upgrade!, eh_doutor?, mensagem_para_carimbo  
-
---
-```
-prof = Professor.new("Mathias", 1)
-prof.upgrade!               # 0 bacharel -> 1 mestre -> 2 doutor
-prof.eh_doutor?             # true
-prof.mensagem_para_carimbo  # "Dr. Mathias"
-```
---
-
-```
-@@titulos = ["Bacharel", "Mestre", "Dr."]
-```
----
 ## Herança
 --
 
@@ -1476,7 +1294,7 @@ meu_jatinho.voando?
 ---
 ## Module
 ```
-class Barco
+class Boat
   attr_accessor :velocidade
   # (...)
 end
@@ -1538,14 +1356,7 @@ template: inverse
 # AÊ!
 
 ---
-## Aprenda mais
-
-* Expressões Regulares
-* Criação de gems
-* Pratique!
-
----
-## Referências  
+## References
 
 ### Livros  
 [The Bastards Book of Ruby](http://ruby.bastardsbook.com/)  
@@ -1556,17 +1367,6 @@ template: inverse
 [Tour de babel](https://sites.google.com/site/steveyegge2/tour-de-babel)  
 [developerWorks interviews Matz](http://www.nt.ntnu.no/users/haugwarb/Programming/Ruby/ruby_features.html#h7)  
 [The Difference Between Ruby Symbols and Strings](http://www.robertsosinski.com/2009/01/11/the-difference-between-ruby-symbols-and-strings/)
-
-### Foto
-[Matz with the Nice and Blave Community](http://www.flickr.com/photos/ncr/4655763428/)
-
----
-## Gostou?
-[@bt1](http://twitter.com/bt1)  
-
-[Recomende-me no WWR!](http://www.workingwithrails.com/person/9376-roberto-soares)  
-
-[http://blog.robertosoares.me/](http://blog.robertosoares.me/)
 
     </textarea>
     <div id="slideshow"></div>
